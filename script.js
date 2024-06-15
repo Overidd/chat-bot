@@ -30,7 +30,7 @@ const MODEL_IA = 'gemma-2b-it-q4f32_1-MLC'
 // Inicializa el motor del modelo de lenguaje
 const engine = await CreateMLCEngine(MODEL_IA, {
     initProgressCallback: ({ progress, text }) => {
-        
+        console.log(progress)
         if (progress === 1) {
             $load.disabled = false; 
         } else if (progress === 0) {
