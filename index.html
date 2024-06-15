@@ -15,33 +15,54 @@
         <!-- <h1>Chat bot</h1> -->
     </header>
     <main>
+        <small id="load">
+            <img src="images/progress.svg" alt="">
+        </small>
         <section class="content__chat">
-            <span>
-                Lorem ipsum dolor sit a
-            </span>
-            <span>
-                Lorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolor
-            </span>
+            <p class="message user">
+                <img src="images/person.svg"></img> 
+                <span>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit quam et neque, nostrum perspiciatis ipsa dolorem
+                </span> 
+            </p>
+
+            <p class="message assistant">
+                <img src="images/robot.svg"></img> 
+                <span>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, alias architecto? Error ut volup
+                </span> 
+            </p>
+
+            <p class="message user">
+                <img src="images/person.svg"></img> 
+                <span>
+                    Lorem ipsum dolor sit 
+                </span> 
+            </p>
+
+            <p class="message assistant">
+                <img src="images/robot.svg"></img> 
+                <span>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit
+                </span> 
+            </p>
         </section>
         <form action="" id="chat-form">
-            <input type="text" placeholder="Escribe un mensaje" id="chat-input">
-            <input type="submit">
+            <input type="text" placeholder="Escribe un mensaje" id="chat-input" autocomplete="off">
+            <button type="submit">
+                <img src="images/play-fill.svg" alt="">
+            </button>
         </form>
-
-        <!-- <small> -->
-            <!--Proceso de carga  -->
-        <!-- </small> -->
-
         <template id="chat-template">
             <p class="message">
-                <img></img> <!-- Para el remitente -->
-                <span></span> <!-- Para el contenido del mensaje -->
+                <img></img> 
+                <span></span> 
             </p>
         </template>
 
     </main>
     <footer>
-        <p>Chat bot v20</p>
+        <p>Chat bot v2</p>
     </footer>
 
 </body>

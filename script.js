@@ -1,14 +1,12 @@
 const $ = (selector) => document.querySelector(selector);
-// const $ = (selector) => document.querySelectorAll(selector);
+// const $$ = (selector) => document.querySelectorAll(selector);
 
 const $chat_form = $('#chat-form');
 const $chat_input = $('#chat-input');
 
-const $submit = $('#submit');
+const $load = $('#load');
 const $content_chat = $('#content__chatt');
 const $chat_template = $('#chat-template');
-
-
 
 function addMessage(sender) {
     const template = $chat_template.content.cloneNode(true);
@@ -16,8 +14,10 @@ function addMessage(sender) {
     img.src = sender.url
     span.textContent = sender.message
 
-    template.querySelector('p').classList.add('message',sender);
+    template.querySelector('p').classList.add('message',sender.role);
     $content_chat.appendChild(template);
+
+    // $content_chat.scrollTop = $content_chat.scrollHeight;
     return span
 }   
 
@@ -30,13 +30,11 @@ const MODEL_IA = 'gemma-2b-it-q4f32_1-MLC'
 // Inicializa el motor del modelo de lenguaje
 const engine = await CreateMLCEngine(MODEL_IA, {
     initProgressCallback: ({ progress, text }) => {
-        // $small.textContent = `${text}`; // Actualiza el texto de progreso
-        console.log(text)
+        
         if (progress === 1) {
-            // $small.textContent = ''; // Borra el texto al completar la inicialización
-            // $button.disabled = false; // Habilita el botón
+            $load.disabled = false; 
         } else if (progress === 0) {
-            // $button.disabled = true; // Deshabilita el botón durante la inicialización
+            $load.disabled = true; 
         }
     }
 })
@@ -59,21 +57,18 @@ $chat_form.onsubmit = async (e) => {
         content: reply
     }];
 
-    // addMessage(messages[0])
+    addMessage(messages[0])
+    const messageBot = addMessage(botReply[0])
 
     const chunks = await engine.chat.completions.create({ messages, stream: true });
     // let messageText = addMessage();
     for await (const chunk of chunks) {
-        const choice = chunk?.choices[0];
-        const content = choice?.delta?.content ?? '';
+        const choice = chunk.choices[0];
+        const content = choice.delta.content ?? '';
         reply += content;
 
-        // botTextMessage.textContent = reply; // Actualiza el mensaje del bot en la interfaz
-        console.log(reply)
+        messageBot.textContent = reply; 
     }
 
-    
-
-
-    $content_chat.scrollTop = $content_chat.scrollHeight;
+    // $content_chat.scrollTop = $content_chat.scrollHeight;
 }

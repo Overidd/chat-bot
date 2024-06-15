@@ -1,14 +1,16 @@
-*, *::after, *::before{
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-img{
+img {
     max-width: 100%;
 }
 
-body{
+body {
     min-height: 100dvh;
     font-family: sans-serif;
     background-color: #000;
@@ -18,84 +20,167 @@ body{
     place-content: center;
 }
 
-header{
+
+header {
     padding: 0.5rem 2rem;
     background-color: #0071eb;
     border-radius: 12px 12px 0 0;
     text-align: center;
 
-    h1{
+    h1 {
         font-size: 1.4rem;
         font-weight: 100;
     }
-    img{
+
+    img {
         width: 8rem;
     }
 }
 
-main{
+main {
     scroll-behavior: smooth;
     height: 27rem;
     background-color: #111;
     display: flex;
     flex-direction: column;
     width: 18rem;
+    position: relative;
 }
-.content__chat{
+small{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(2px);
+    z-index: 2;
+    /* overflow: hidden; */
+    img{
+        display: block;
+        width: 5rem;
+        margin-top: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        animation: rotate 1s infinite;
+    }
+    /* display: none; */
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    
+}
+
+.content__chat {
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
     font-size: 0.8rem;
-    span{
-        display: block;
-        background-color: #eee;
-        color: #000;
-        padding: 0.5rem;
-        border-radius: 12px;
-        margin-left: auto;
-        margin-top: 1rem;
-        text-align: right;
-        max-width: 10rem;
-        width: fit-content;
-        text-wrap: balance;
+    overflow-y: auto;
+}
+
+.message {
+    margin-top: 1rem;
+    max-width: 82%;
+    position: relative;
+    /* z-index: 2; */
+    --width-img: 1.9rem;
+
+    img {
+        position: absolute;
+        top: -10px;
+        background-color: #ccc;
+        border-radius: 50%;
+        padding: 0.2rem;
+        width: var(--width-img);
     }
 
-    span:nth-last-child(2n){
-        background-color: #0071eb;
-        color: #fff;
-        margin-left: 0;
-        margin-right: auto;
-        text-align: left;
+    span {
+        display: inline-block;
+        width: calc(100% - var(--width-img) - 2%);
+        padding: 0.5rem;
+        border-radius: 0px 12px 12px 12px;
+        position: relative;
     }
 }
 
+.message.user {
+    margin-left: auto;
+    text-align: left;
 
-form{
+    img {
+        right: 0;
+        left: auto;
+    }
+
+    span {
+        background-color: #ccc;
+        color: #000c;
+        border-radius: 12px 0px 12px 12px;
+    }
+}
+
+.message.assistant {
+    margin-right: auto;
+
+    img {
+        background-color: #007bff;
+        left: 0;
+        right: auto;
+    }
+
+    span {
+        float: right;
+        background-color: #0071eb;
+        color: #fffd;
+    }
+
+}
+
+
+form {
+    text-align: center;
     margin-top: auto;
-    --imput-width: 80%;
-    input{
-        padding: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    input {
         border: none;
+        padding: 0.6rem;
         background-color: #eee;
         font-weight: bold;
         color: #000c;
-        width: var(--imput-width);
+        width: 80%;
+        border-radius: 12px;
     }
-    input:focus-visible{
+
+    input:focus-visible {
         outline: none;
     }
-    input[type="submit"]{
-        width: calc(100% - var(--imput-width));
-        margin-left: -5px;
+
+    button {
+        vertical-align: middle;
+        background-color: #0071eb;
+        border: none;
+        border-radius: 50%;
+        padding: 0.15rem;
         cursor: pointer;
-        background-color: #1d1f20;
-        color: #fffc;
+
+        img {
+            margin-left: 4px;
+            width: 2rem;
+            vertical-align: middle;
+        }
     }
 }
-footer{
+
+footer {
     background-color: #0071eb;
-    padding: 0.5rem 2rem;
+    padding: 1.2rem;
     text-align: center;
     border-radius: 0 0 12px 12px;
+    font-size: 0.8rem;
 }
