@@ -6,6 +6,21 @@ const $chat_input = $('#chat-input');
 
 const $submit = $('#submit');
 const $content_chat = $('#content__chatt');
+const $chat_template = $('#chat-template');
+
+
+
+function addMessage(sender) {
+    const template = $chat_template.content.cloneNode(true);
+    const [img, span] = template.querySelectorAll('img', 'span');
+    img.src = sender.url
+    span.textContent = sender.message
+
+    template.querySelector('p').classList.add('message',sender);
+    $content_chat.appendChild(template);
+    return span
+}   
+
 
 // Importa el módulo CreateMLCEngine desde la URL especificada
 import { CreateMLCEngine } from "https://esm.run/@mlc-ai/web-llm"
@@ -29,16 +44,25 @@ const engine = await CreateMLCEngine(MODEL_IA, {
 // Genera la respuesta del bot de forma incremental
 $chat_form.onsubmit = async (e) => {
     e.preventDefault()
-    
+
     const message = $chat_input.value;
     let reply = '';
     const messages = [{
         role: 'user',
-        content: message
+        url: 'images/person.svg',
+        content: message,
     }];
     
-    const chunks = await engine.chat.completions.create({ messages, stream: true });
+    const botReply = [{
+        role: 'assistant',
+        url: 'images/robot.svg',
+        content: reply
+    }];
 
+    // addMessage(messages[0])
+
+    const chunks = await engine.chat.completions.create({ messages, stream: true });
+    // let messageText = addMessage();
     for await (const chunk of chunks) {
         const choice = chunk?.choices[0];
         const content = choice?.delta?.content ?? '';
@@ -48,11 +72,8 @@ $chat_form.onsubmit = async (e) => {
         console.log(reply)
     }
 
-    const botReply = {
-        role: 'assistant',
-        content: reply
-    };
     
+
 
     $content_chat.scrollTop = $content_chat.scrollHeight;
 }
