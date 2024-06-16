@@ -6,6 +6,17 @@
     box-sizing: border-box;
 }
 
+/* Estilo básico para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+    background-color: #1f1d1d;   
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #8885; /* Color del "pulgar" (la parte móvil de la barra) */
+    border-radius: 5px; /* Bordes redondeados del pulgar */
+}
+
 img {
     max-width: 100%;
 }
@@ -26,6 +37,9 @@ header {
     background-color: #0071eb;
     border-radius: 12px 12px 0 0;
     text-align: center;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 10px #0005;
 
     h1 {
         font-size: 1.4rem;
@@ -34,16 +48,17 @@ header {
 
     img {
         width: 8rem;
+        
     }
 }
 
 main {
     scroll-behavior: smooth;
-    height: 27rem;
+    width: 23rem;
+    height: 30rem;
     background-color: #111;
     display: flex;
     flex-direction: column;
-    width: 18rem;
     position: relative;
 }
 small{
@@ -54,6 +69,7 @@ small{
     bottom: 0;
     backdrop-filter: blur(2px);
     z-index: 2;
+    display: none;
     /* overflow: hidden; */
     img{
         display: block;
@@ -63,7 +79,6 @@ small{
         margin-right: auto;
         animation: rotate 1s infinite;
     }
-    /* display: none; */
 }
 @keyframes rotate {
     0% {
@@ -76,15 +91,21 @@ small{
 }
 
 .content__chat {
+    flex: 1;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
+    scroll-behavior: smooth;
     overflow-y: auto;
+    scrollbar-width: 2px;
+    /* scrollbar-color: #000; */
 }
 
 .message {
+    /* width: 1rem; */
     margin-top: 1rem;
+    min-width: 5.5rem;
     max-width: 82%;
     position: relative;
     /* z-index: 2; */
@@ -92,7 +113,7 @@ small{
 
     img {
         position: absolute;
-        top: -10px;
+        top: -12px;
         background-color: #ccc;
         border-radius: 50%;
         padding: 0.2rem;
@@ -100,11 +121,15 @@ small{
     }
 
     span {
+        /* width: 1rem; */
         display: inline-block;
-        width: calc(100% - var(--width-img) - 2%);
+        /* margin-left: -5px; */
+        /* min-width: 0.5rem; */
+        /* text-align: center; */
+        width: calc(100% - var(--width-img) - 0.3rem);
         padding: 0.5rem;
         border-radius: 0px 12px 12px 12px;
-        position: relative;
+        /* position: relative; */
     }
 }
 
@@ -115,9 +140,12 @@ small{
     img {
         right: 0;
         left: auto;
+        /* margin-right: 10px; */
     }
 
     span {
+        /* margin-right: 10px; */
+        /* float: left; */
         background-color: #ccc;
         color: #000c;
         border-radius: 12px 0px 12px 12px;
