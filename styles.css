@@ -25,10 +25,7 @@ body {
     min-height: 100dvh;
     font-family: sans-serif;
     background-color: #000;
-    flex-direction: column;
     color: #fff;
-    display: grid;
-    place-content: center;
 }
 
 
