@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="Content-Security-Policy" unsafe-inline unsafe-eval content="script-src 'self' https://esm.run/@mlc-ai/web-llm"> -->
+    <meta http-equiv="Content-Security-Policy" content="script-src-elem 'self' https://*">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="popup.js" type="module"></script>
+    <title>Chat-bot</title>
+</head>
+
+<body>
+    <header>
+        <img src="images/bot.gif" class="botgif"></img>
+        <!-- <h1>Chat bot</h1> -->
+    </header>
+    <main>
+        <small id="load">
+            <img src="images/progress.svg" alt="">
+        </small>
+        <section class="content__chat">
+            <!-- <p class="message user">
+                <img src="images/person.svg"> 
+                <span>Hola</span> 
+            </p> -->
+        </section>
+        <form action="" id="chat-form">
+            <input type="text" placeholder="Escribe un mensaje" id="chat-input" autocomplete="off">
+            <button type="submit">
+                <img src="images/play-fill.svg" alt="">
+            </button>
+        </form>
+        <template id="chat-template">
+            <p class="message">
+                <img></img> 
+                <span></span> 
+            </p>
+        </template>
+
+    </main>
+    <footer>
+        <p>Chat bot v2</p>
+    </footer>
+
+</body>
+
+</html>

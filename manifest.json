@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Chat bot",
+  "version": "1.0",
+  "description": "Mensajeria digital con un robot con inteligencia artificial.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "./images/robot.svg"
+    }
+  },
+  "permissions": ["activeTab", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

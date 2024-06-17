@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.46"
+  },
+  "name": "chat-bot",
+  "version": "1.0.0",
+  "main": "background.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
